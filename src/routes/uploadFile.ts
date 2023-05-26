@@ -9,7 +9,7 @@ const router = express.Router();
 const upload = multer({
     storage,
     fileFilter: function (req: Request, file, cb) {
-        const allowedFileExtensions = ['jpeg', 'png', 'jpg', 'pdf'];
+        const allowedFileExtensions = ['jpeg', 'png', 'jpg'];
         const fileExtensions = file.originalname.split('.').pop();
         if (allowedFileExtensions.includes(`${fileExtensions}`)) {
             cb(null, true);
@@ -20,7 +20,7 @@ const upload = multer({
 
     },
     limits: {
-        fileSize: 2 * 1024 * 1024,
+        fileSize: 5 * 1024 * 1024,
     }
 })
 
