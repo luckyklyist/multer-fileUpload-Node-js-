@@ -3,6 +3,7 @@ import multer from 'multer';
 import fs from 'fs';
 import handleUploadError from '../middleware/handleUploadError';
 import storage from '../config/storageConfig';
+import path from 'path';
 
 const router = express.Router();
 
@@ -42,7 +43,7 @@ router.post('/', upload.single('fileName'), (req: Request, res: Response) => {
 
 router.get("/:filename", (req: Request, res: Response) => {
     const { filename } = req.params;
-    res.sendFile(filename, { root: "./uploads" });
+    res.sendFile(filename, { root:path.resolve( __dirname,"../../uploads") });
 });
 
 // Error handling middleware
